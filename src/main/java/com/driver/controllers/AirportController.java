@@ -20,12 +20,10 @@ import java.util.Objects;
 @RestController
 public class AirportController {
 
+    @Autowired
     AirportService airportService;
 
     public AirportController() {}
-    public AirportController(AirportService airportService) {
-        this.airportService = airportService;
-    }
 
     @PostMapping("/add_airport")
     public String addAirport(@RequestBody Airport airport){
