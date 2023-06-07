@@ -5,6 +5,7 @@ import com.driver.model.Airport;
 import com.driver.model.City;
 import com.driver.model.Flight;
 import com.driver.model.Passenger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -12,11 +13,8 @@ import java.util.Date;
 @Service
 public class AirportService {
 
+    @Autowired
     AirportRepository airportRepository;
-
-    public AirportService(AirportRepository airportRepository) {
-        this.airportRepository = airportRepository;
-    }
 
     public void addAirport(Airport airport) {
         airportRepository.addAirport(airport);
