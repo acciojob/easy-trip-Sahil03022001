@@ -10,11 +10,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
-@Service
 public class AirportService {
 
-    @Autowired
-    AirportRepository airportRepository;
+    AirportRepository airportRepository = new AirportRepository();
 
     public void addAirport(Airport airport) {
         airportRepository.addAirport(airport);

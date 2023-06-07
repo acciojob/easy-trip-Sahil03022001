@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
-@Repository
 public class AirportRepository {
 
     static private final int basicPay = 3000;
