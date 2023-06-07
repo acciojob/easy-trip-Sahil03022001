@@ -13,12 +13,21 @@ public class AirportRepository {
 
     static private final int basicPay = 3000;
 
-    HashMap<String, Airport> airportHashMap = new HashMap<>();
-    HashMap<Integer, Flight> flightHashMap = new HashMap<>();
-    HashMap<Integer, Passenger> passengerHashMap = new HashMap<>();
-    HashMap<Integer, List<Passenger>> flightBookings = new HashMap<>();
-    HashMap<Integer, Integer> countOfBookingsOfPassengers = new HashMap<>();
-    HashMap<Integer, Integer> totalRevenueOfFlights = new HashMap<>();
+    HashMap<String, Airport> airportHashMap;
+    HashMap<Integer, Flight> flightHashMap;
+    HashMap<Integer, Passenger> passengerHashMap;
+    HashMap<Integer, List<Passenger>> flightBookings;
+    HashMap<Integer, Integer> countOfBookingsOfPassengers;
+    HashMap<Integer, Integer> totalRevenueOfFlights;
+
+    public AirportRepository() {
+        airportHashMap = new HashMap<>();
+        flightHashMap = new HashMap<>();
+        passengerHashMap = new HashMap<>();
+        flightBookings = new HashMap<>();
+        countOfBookingsOfPassengers = new HashMap<>();
+        totalRevenueOfFlights = new HashMap<>();
+    }
 
     public void addAirport(Airport airport) {
         airportHashMap.put(airport.getAirportName(), airport);
@@ -30,7 +39,7 @@ public class AirportRepository {
         }
 
         String largestAirportName = "";
-        int maxTerminals = 0;
+        int maxTerminals = -1;
         for(String airportName : airportHashMap.keySet()) {
             int cntOfTerminals = airportHashMap.get(airportName).getNoOfTerminals();
             if(cntOfTerminals > maxTerminals) {
@@ -71,7 +80,11 @@ public class AirportRepository {
             City toCity = flightHashMap.get(flightId).getToCity();
 
             if(date.equals(flightDate) && (city.equals(fromCity) || city.equals(toCity))) {
-                totalPassengers += flightHashMap.get(flightId).getMaxCapacity();
+                int size = 0;
+                if(flightBookings.containsKey(flightId)) {
+                    size = flightBookings.get(flightId).size();
+                }
+                totalPassengers += size;
             }
         }
 
